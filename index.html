@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食光里 | 米其林星级体验，家的温暖味道</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --primary-light: #A0522D;
+            --secondary-color: #D2691E;
+            --accent-color: #FFA500;
+            --light-color: #FFF8F0;
+            --dark-color: #3A2C1C;
+            --text-color: #333333;
+            --gray-color: #F5F5F5;
+            --border-radius: 8px;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .text-center h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-light {
+            background-color: var(--light-color);
+        }
+        
+        .section-dark {
+            background-color: var(--dark-color);
+            color: #fff;
+        }
+        
+        .section-dark h2, .section-dark h3 {
+            color: #fff;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(139, 69, 19, 0.05);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .btn-accent:hover {
+            background-color: #FF8C00;
+            transform: translateY(-3px);
+        }
+        
+        /* 头部导航 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .header-scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+        
+        .header-scrolled .header-container {
+            padding: 5px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after, .nav-links a.active:after {
+            width: 100%;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .reservation-btn {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+        
+        /* 关于我们 */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+        
+        .stat-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* 特色菜品 */
+        .menu-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+        
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tab-btn {
+            padding: 10px 25px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item-img {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.2rem;
+        }
+        
+        .menu-item-content {
+            padding: 20px;
+        }
+        
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item-title {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .menu-item-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .menu-item-desc {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .menu-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag {
+            background-color: var(--gray-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .tag.chef-choice {
+            background-color: rgba(255, 165, 0, 0.1);
+            color: var(--accent-color);
+        }
+        
+        /* 预订区域 */
+        .reservation {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        
+        .reservation h2:after {
+            background-color: white;
+        }
+        
+        .reservation-container {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .reservation-content {
+            flex: 1;
+        }
+        
+        .reservation-form-container {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* 门店信息 */
+        .locations-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .location-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .location-img {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        
+        .location-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .location-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .location-info {
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .info-item i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-color);
+            color: #ddd;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .about-container, .reservation-container {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-actions .btn {
+                display: none;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .menu-grid, .locations-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">食光<span>里</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">首页</a></li>
+                <li><a href="#about" class="nav-link">关于我们</a></li>
+                <li><a href="#menu" class="nav-link">特色菜品</a></li>
+                <li><a href="#reservation" class="nav-link">在线预订</a></li>
+                <li><a href="#locations" class="nav-link">门店信息</a></li>
+                <li><a href="#contact" class="nav-link">联系我们</a></li>
+            </ul>
+            
+            <div class="header-actions">
+                <a href="tel:+861234567890" class="phone-link">
+                    <i class="fas fa-phone"></i> 123-456-7890
+                </a>
+                <a href="#reservation" class="btn reservation-btn">立即预订</a>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>食光里 · 品味时光</h1>
+                <p>融合传统烹饪技艺与现代创新理念，为您呈现独一无二的用餐体验。从农场到餐桌，我们用心挑选每一份食材，以匠心精神呈现每一道料理。</p>
+                <div class="hero-btns">
+                    <a href="#reservation" class="btn btn-primary">在线预订</a>
+                    <a href="#menu" class="btn btn-secondary">查看菜单</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="about section-light" id="about">
+        <div class="container">
+            <h2 class="text-center">关于食光里</h2>
+            <div class="about-container">
+                <div class="about-img">
+                    <video src="shipin/sp.mp4" alt="食光里餐厅环境" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="about-content">
+                    <h3>源于热爱，忠于品质</h3>
+                    <p>食光里创立于2010年，由主厨李明先生创立。我们的理念是将传统中餐烹饪技艺与现代创新理念相结合，为食客提供难忘的用餐体验。</p>
+                    <p>我们坚持使用本地优质食材，与当地农场建立直接合作关系，确保食材的新鲜与品质。每一道菜都经过精心研发，既保留传统风味，又融入创新元素。</p>
+                    <p>食光里连续三年获得米其林一星餐厅称号，并荣获"最佳中餐厅"、"最佳服务餐厅"等多个行业奖项。</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">12+</span>
+                            <span class="stat-text">年经验</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-text">特色菜品</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5</span>
+                            <span class="stat-text">城市分店</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-text">米其林星</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色菜品 -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2 class="text-center">特色菜品</h2>
+            <div class="menu-intro">
+                <p>我们的菜单随季节变化，采用当季最新鲜的食材。以下是部分招牌菜品，每月还会推出季节限定菜品。</p>
+            </div>
+            
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-category="all">全部</button>
+                <button class="tab-btn" data-category="appetizer">开胃菜</button>
+                <button class="tab-btn" data-category="main">主菜</button>
+                <button class="tab-btn" data-category="dessert">甜品</button>
+                <button class="tab-btn" data-category="chef">主厨推荐</button>
+            </div>
+            
+            <div class="menu-grid" id="menuGrid">
+                <!-- 菜品将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 在线预订 -->
+    <section class="reservation" id="reservation">
+        <div class="container">
+            <h2 class="text-center">在线预订</h2>
+            <div class="reservation-container">
+                <div class="reservation-content">
+                    <h3>预订您的专属用餐体验</h3>
+                    <p>我们提供舒适的用餐环境，专业的服务团队，确保您的每一次用餐都是一次美好的体验。</p>
+                    <p>提前预订可确保您在我们繁忙时段获得理想的位置。我们也接受特殊场合的预订，如生日、纪念日、商务宴请等。</p>
+                    <p>营业时间：周一至周日 11:00 AM - 10:00 PM</p>
+                    <p>预订电话：<strong>123-456-7890</strong></p>
+                </div>
+                
+                <div class="reservation-form-container">
+                    <h3>预订信息</h3>
+                    <form id="reservationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">姓名 *</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">电话 *</label>
+                                <input type="tel" id="phone" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">日期 *</label>
+                                <input type="date" id="date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">时间 *</label>
+                                <select id="time" class="form-control" required>
+                                    <option value="">选择时间</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guests">人数 *</label>
+                                <select id="guests" class="form-control" required>
+                                    <option value="">选择人数</option>
+                                    <option value="1">1 人</option>
+                                    <option value="2">2 人</option>
+                                    <option value="3">3 人</option>
+                                    <option value="4">4 人</option>
+                                    <option value="5">5 人</option>
+                                    <option value="6">6 人</option>
+                                    <option value="7">7+ 人</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">选择门店</label>
+                                <select id="location" class="form-control">
+                                    <option value="1">食光里旗舰店 (市中心)</option>
+                                    <option value="2">食光里湖滨店</option>
+                                    <option value="3">食光里艺术区店</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="special-requests">特殊要求</label>
+                            <textarea id="special-requests" class="form-control" rows="3" placeholder="如有特殊饮食需求、庆祝活动等，请在此注明"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">确认预订</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 门店信息 -->
+    <section class="locations section-light" id="locations">
+        <div class="container">
+            <h2 class="text-center">我们的门店</h2>
+            <div class="locations-container">
+                <!-- 门店1 -->
+                <div class="location-card">
+                    <div class="location-img">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20Chinese%20restaurant%20exterior%20in%20city%20center%2C%20SOHO%20style%2C%20Beijing%2C%20high%20quality%20photography&image_size=landscape_4_3" alt="食光里旗舰店" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="location-content">
+                        <h3 class="location-title">食光里旗舰店</h3>
+                        <div class="location-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>北京市朝阳区建国路88号SOHO现代城A座</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span>010-1234-5678</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>周一至周日 11:00-22:00</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">查看详情</a>
+                    </div>
+                </div>
+                
+                <!-- 门店2 -->
+                <div class="location-card">
+                    <div class="location-img">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chinese%20restaurant%20with%20lake%20view%2C%20West%20Lake%20Hangzhou%2C%20modern%20design%2C%20high%20quality%20photography&image_size=landscape_4_3" alt="食光里湖滨店" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="location-content">
+                        <h3 class="location-title">食光里湖滨店</h3>
+                        <div class="location-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>杭州市西湖区湖滨路18号银泰中心3楼</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span>0571-8765-4321</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>周一至周日 10:30-22:30</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">查看详情</a>
+                    </div>
+                </div>
+                
+                <!-- 门店3 -->
+                <div class="location-card">
+                    <div class="location-img">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=artistic%20Chinese%20restaurant%20in%20art%20district%2C%20industrial%20style%2C%20Shanghai%20M50%20art%20zone%2C%20high%20quality%20photography&image_size=landscape_4_3" alt="食光里艺术区店" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="location-content">
+                        <h3 class="location-title">食光里艺术区店</h3>
+                        <div class="location-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>上海市黄浦区莫干山路50号M50艺术区6号楼</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span>021-5678-1234</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>周二至周日 11:30-23:00 (周一休息)</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>食光里</h3>
+                    <p>融合传统烹饪技艺与现代创新理念，为您呈现独一无二的用餐体验。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#menu">特色菜品</a></li>
+                        <li><a href="#reservation">在线预订</a></li>
+                        <li><a href="#locations">门店信息</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 北京市朝阳区建国路88号</li>
+                        <li><i class="fas fa-phone"></i> 010-1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> info@shiguangli.com</li>
+                        <li><i class="fas fa-clock"></i> 每日 11:00-22:00</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>订阅资讯</h3>
+                    <p>订阅我们的新闻通讯，获取最新菜品、优惠活动和美食故事。</p>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <input type="email" class="form-control" placeholder="请输入您的邮箱">
+                        <button class="btn btn-accent" style="width: 100%; margin-top: 10px;">订阅</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 食光里餐饮集团. 保留所有权利. | 设计 by 元宝</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // 移动端菜单切换
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // 关闭移动端菜单
+                    document.querySelector('.nav-links').classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 菜单数据
+        const menuItems = [
+            {
+                id: 1,
+                name: "黑松露烤鸭",
+                description: "精选北京填鸭，配以意大利黑松露，传统工艺与现代风味的完美结合。",
+                price: "¥288",
+                category: "main",
+                tags: ["主厨推荐", "招牌"],
+                chefChoice: true,
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=delicious%20Peking%20duck%20with%20black%20truffle%2C%20crispy%20skin%2C%20Chinese%20cuisine%2C%20high%20quality%20food%20photography&image_size=landscape_4_3"
+            },
+            {
+                id: 2,
+                name: "翡翠虾饺",
+                description: "手作虾饺，菠菜汁和面，内馅为整只鲜虾，口感鲜美爽滑。",
+                price: "¥68",
+                category: "appetizer",
+                tags: ["点心", "推荐"],
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=jade%20shrimp%20dumplings%2C%20green%20color%2C%20Chinese%20dim%20sum%2C%20high%20quality%20food%20photography&image_size=landscape_4_3"
+            },
+            {
+                id: 3,
+                name: "法式红酒炖牛肉",
+                description: "澳洲牛腩配以勃艮第红酒慢炖4小时，肉质酥烂，酒香浓郁。",
+                price: "¥198",
+                category: "main",
+                tags: ["法式", "慢炖"],
+                chefChoice: true,
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=French%20beef%20bourguignon%2C%20braised%20beef%20with%20red%20wine%2C%20high%20quality%20food%20photography&image_size=landscape_4_3"
+            },
+            {
+                id: 4,
+                name: "芒果糯米饭",
+                description: "泰国香糯米配新鲜芒果，淋上椰浆，口感香甜软糯。",
+                price: "¥48",
+                category: "dessert",
+                tags: ["甜品", "泰式"],
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=mango%20sticky%20rice%2C%20Thai%20dessert%2C%20coconut%20milk%2C%20high%20quality%20food%20photography&image_size=landscape_4_3"
+            },
+            {
+                id: 5,
+                name: "松茸鸡汤",
+                description: "老母鸡与云南松茸慢火炖煮8小时，汤色清澈，味道鲜美。",
+                price: "¥128",
+                category: "appetizer",
+                tags: ["汤品", "季节限定"],
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=chicken%20soup%20with%20matsutake%20mushrooms%2C%20clear%20broth%2C%20Chinese%20cuisine%2C%20high%20quality%20food%20photography&image_size=landscape_4_3"
+            },
+            {
+                id: 6,
+                name: "香煎鹅肝",
+                description: "法国露杰鹅肝，配以苹果泥和波特酒酱汁，入口即化。",
+                price: "¥168",
+                category: "main",
+                tags: ["法式", "推荐"],
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=seared%20foie%20gras%20with%20apple%20puree%2C%20French%20cuisine%2C%20high%20quality%20food%20photography&image_size=landscape_4_3"
+            },
+            {
+                id: 7,
+                name: "提拉米苏",
+                description: "意大利经典甜品，马斯卡彭奶酪与咖啡酒的手指饼干完美融合。",
+                price: "¥58",
+                category: "dessert",
+                tags: ["甜品", "意大利"],
+                chefChoice: true,
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Tiramisu%20dessert%2C%20Italian%20dessert%2C%20coffee%20flavor%2C%20high%20quality%20food%20photography&image_size=landscape_4_3"
+            },
+            {
+                id: 8,
+                name: "刺身拼盘",
+                description: "当日新鲜海鲜刺身，包括三文鱼、金枪鱼、甜虾和北极贝。",
+                price: "¥228",
+                category: "appetizer",
+                tags: ["日式", "海鲜"],
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=sashimi%20platter%20with%20salmon%20tuna%20shrimp%20and%20scallop%2C%20Japanese%20cuisine%2C%20high%20quality%20food%20photography&image_size=landscape_4_3"
+            }
+        ];
+
+        // 生成菜单
+        function renderMenuItems(category = 'all') {
+            const menuGrid = document.getElementById('menuGrid');
+            menuGrid.innerHTML = '';
+            
+            const filteredItems = category === 'all' 
+                ? menuItems 
+                : category === 'chef' 
+                ? menuItems.filter(item => item.chefChoice)
+                : menuItems.filter(item => item.category === category);
+            
+            filteredItems.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.setAttribute('data-category', item.category);
+                
+                let tagsHtml = '';
+                item.tags.forEach(tag => {
+                    const tagClass = tag === '主厨推荐' ? 'chef-choice' : '';
+                    tagsHtml += `<span class="tag ${tagClass}">${tag}</span>`;
+                });
+                
+                if (item.chefChoice) {
+                    tagsHtml += `<span class="tag chef-choice">主厨推荐</span>`;
+                }
+                
+                menuItem.innerHTML = `
+                    <div class="menu-item-img">
+                        ${item.image ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;">` : '<i class="fas fa-utensils fa-3x"></i>'}
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">${item.name}</h4>
+                            <span class="menu-item-price">${item.price}</span>
+                        </div>
+                        <p class="menu-item-desc">${item.description}</p>
+                        <div class="menu-item-tags">
+                            ${tagsHtml}
+                        </div>
+                    </div>
+                `;
+                
+                menuGrid.appendChild(menuItem);
+            });
+        }
+
+        // 初始化菜单
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMenuItems();
+            
+            // 菜单标签切换
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除其他按钮的active类
+                    document.querySelectorAll('.tab-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // 添加当前按钮的active类
+                    this.classList.add('active');
+                    
+                    // 渲染对应类别的菜单
+                    const category = this.getAttribute('data-category');
+                    renderMenuItems(category);
+                });
+            });
+            
+            // 预订表单提交
+            document.getElementById('reservationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 获取表单数据
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const date = document.getElementById('date').value;
+                const time = document.getElementById('time').value;
+                const guests = document.getElementById('guests').value;
+                
+                if (!name || !phone || !date || !time || !guests) {
+                    alert('请填写所有必填字段');
+                    return;
+                }
+                
+                // 模拟提交成功
+                alert('预订成功！我们将尽快与您联系确认。');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>
